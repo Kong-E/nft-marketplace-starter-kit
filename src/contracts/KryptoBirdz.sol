@@ -5,7 +5,7 @@ contract KryptoBirdz {
   string public name;
   string public symbol;
 
-  constructor() {
+  constructor() public {
       name = "KryptoBirdz";
       symbol = "KBZ";
     }
