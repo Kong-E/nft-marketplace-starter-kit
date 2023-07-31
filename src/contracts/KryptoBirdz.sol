@@ -8,5 +8,17 @@ contract KryptoBirdz {
   constructor() public {
       name = "KryptoBirdz";
       symbol = "KBZ";
-    }
+  }
+
+  struct Bird {
+    uint id;
+    string name;
+    uint dna;
+  }
+
+  Bird[] public birds;
+
+  function _createBird(string memory _name, uint _dna) private {
+    birds.push(Bird(birds.length, _name, _dna));
+  }
 }

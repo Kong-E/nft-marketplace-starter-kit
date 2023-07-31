@@ -5,6 +5,10 @@ contract Migrations {
     address public owner;
     uint256 public last_completed_migration;
 
+    constructor() public {
+        owner = msg.sender; // 생성자의 주소를 owner에 저장
+    }
+
     modifier restricted() {
         require(msg.sender == owner,
         "This function is restricted to the contract's owner"
