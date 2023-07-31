@@ -5,6 +5,25 @@ import './ERC721Connector.sol';
 
 contract KryptoBirdz is ERC721Connector {
 
+  // 배열 -> 민팅작업으로 생긴 크립토버즈가 저장됨
+  string[] public kryptoBirdz;
+
+  mapping(string => bool) _kryptoBirdzExists;
+
+  // ERC721 -> token
+  function mint(string memory _kryptoBird) public {
+
+    require(!_kryptoBirdzExists[_kryptoBird], 'Error - kryptoBird already exists');
+    // this is deprecated - uint _id = kryptoBirdz.push(_kryptoBird);
+    kryptoBirdz.push(_kryptoBird);
+    uint _id = kryptoBirdz.length - 1;
+
+    // .push no longer returns the length but a ref to the added element
+    _mint(msg.sender, _id);
+
+    _kryptoBirdzExists[_kryptoBird] = true;
+  }
+
   // initialize this contract to inherit
   // name and symbol from ERC721Metadata so that
   // the name is KryptoBirdz and the symbol is KBZ
@@ -12,23 +31,4 @@ contract KryptoBirdz is ERC721Connector {
   constructor() ERC721Connector("KryptoBirdz", "KBZ") public {
   }
 
-  /* string public name;
-  string public symbol;
-
-  constructor() public {
-      name = "KryptoBirdz";
-      symbol = "KBZ";
-  }
-
-  struct Bird {
-    uint id;
-    string name;
-    uint dna;
-  }
-
-  Bird[] public birds;
-
-  function _createBird(string memory _name, uint _dna) private {
-    birds.push(Bird(birds.length, _name, _dna));
-  } */
 }
