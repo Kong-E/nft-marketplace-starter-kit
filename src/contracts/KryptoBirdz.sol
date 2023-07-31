@@ -10,7 +10,8 @@ contract KryptoBirdz is ERC721Connector {
 
   mapping(string => bool) _kryptoBirdzExists;
 
-  // ERC721 -> token
+  // ERC721 -> tokenId 민트
+  // KryptoBirdz -> 사진 민트
   function mint(string memory _kryptoBird) public {
 
     require(!_kryptoBirdzExists[_kryptoBird], 'Error - kryptoBird already exists');

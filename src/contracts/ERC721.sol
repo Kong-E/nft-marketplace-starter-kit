@@ -27,6 +27,29 @@ contract ERC721 {
   // Mapping from owner to number of owned token
   mapping(address => uint256) private _OwnedTokensCount;
 
+  /// @notice Count all NFTs assigned to an owner
+  /// @dev NFTs assigned to the zero address are considered invalid, and this
+  ///  function throws for queries about the zero address.
+  /// @param _owner An address for whom to query the balance
+  /// @return The number of NFTs owned by `_owner`, possibly zero
+  // 토큰의 소유자가 가지고 있는 토큰의 개수를 반환하는 함수
+  function balanceOf(address _owner) public view returns(uint256) {
+    require(_owner != address(0), "ERC721: balance query for the zero address");
+    return _OwnedTokensCount[_owner];
+  }
+
+  /// @notice Find the owner of an NFT
+  /// @dev NFTs assigned to zero address are considered invalid, and queries
+  ///  about them do throw.
+  /// @param _tokenId The identifier for an NFT
+  /// @return The address of the owner of the NFT
+  // 토큰의 소유자를 반환하는 함수
+  function ownerOf(uint256 _tokenId) external view returns (address) {
+    address owner = _tokenOwner[_tokenId];
+    require(owner != address(0), "ERC721: owner query for nonexistent token");
+    return owner;
+  }
+
   function _exists(uint256 tokenId) internal view returns (bool) {
     // setting the address of nft owner to check the mapping
     // of the address from tokenOwner at the tokenId
@@ -39,7 +62,7 @@ contract ERC721 {
     require(to != address(0), "ERC721: minting to the zero address"); // 주소가 0이 아니라는걸 증명
     require(!_exists(tokenId), "ERC721: token already minted"); // 토큰이 존재하지 않는다는걸 증명
     _tokenOwner[tokenId] = to; // 해당 토큰아이디를 to에게 매핑
-    _OwnedTokensCount[to] += 1;
+    _OwnedTokensCount[to] += 1; // to의 토큰개수 세기
 
     emit Transfer(address(0), to, tokenId);
   }
