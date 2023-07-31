@@ -4,6 +4,8 @@
   "description": "nft-marketplace App",
   "author": "c-money",
   "dependencies": {
+    "@metamask/detect-provider": "^2.0.0",
+    "@openzeppelin/contracts": "^4.9.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",
     "@types/react": "^17.0.14",

@@ -1,8 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract KryptoBirdz {
-  string public name;
+import './ERC721Connector.sol';
+
+contract KryptoBirdz is ERC721Connector {
+
+  // initialize this contract to inherit
+  // name and symbol from ERC721Metadata so that
+  // the name is KryptoBirdz and the symbol is KBZ
+
+  constructor() ERC721Connector("KryptoBirdz", "KBZ") public {
+  }
+
+  /* string public name;
   string public symbol;
 
   constructor() public {
@@ -20,5 +30,5 @@ contract KryptoBirdz {
 
   function _createBird(string memory _name, uint _dna) private {
     birds.push(Bird(birds.length, _name, _dna));
-  }
+  } */
 }
