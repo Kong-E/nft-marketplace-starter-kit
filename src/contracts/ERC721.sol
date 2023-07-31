@@ -58,7 +58,7 @@ contract ERC721 {
     return owner != address(0); 
   }
 
-  function _mint(address to, uint256 tokenId) internal {
+  function _mint(address to, uint256 tokenId) internal virtual {
     require(to != address(0), "ERC721: minting to the zero address"); // 주소가 0이 아니라는걸 증명
     require(!_exists(tokenId), "ERC721: token already minted"); // 토큰이 존재하지 않는다는걸 증명
     _tokenOwner[tokenId] = to; // 해당 토큰아이디를 to에게 매핑
@@ -67,3 +67,5 @@ contract ERC721 {
     emit Transfer(address(0), to, tokenId);
   }
 }
+
+// enumerable -> 한 집합 내 모든 항목이 완전히 순서가 매겨진 것
