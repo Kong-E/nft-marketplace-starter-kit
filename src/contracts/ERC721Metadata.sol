@@ -5,7 +5,7 @@ contract ERC721Metadata {
   string private _name;
   string private _symbol;
 
-  constructor(string memory named, string memory symbolified) public {
+  constructor(string memory named, string memory symbolified) {
       _name = named;
       _symbol = symbolified;
   }

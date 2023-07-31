@@ -29,7 +29,7 @@ contract KryptoBirdz is ERC721Connector {
   // name and symbol from ERC721Metadata so that
   // the name is KryptoBirdz and the symbol is KBZ
 
-  constructor() ERC721Connector("KryptoBirdz", "KBZ") public {
+  constructor() ERC721Connector("KryptoBirdz", "KBZ") {
   }
 
 }

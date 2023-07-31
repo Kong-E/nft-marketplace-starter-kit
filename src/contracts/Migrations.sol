@@ -5,7 +5,7 @@ contract Migrations {
     address public owner;
     uint256 public last_completed_migration;
 
-    constructor() public {
+    constructor() {
         owner = msg.sender; // 생성자의 주소를 owner에 저장
     }
 
