@@ -12,7 +12,7 @@ contract KryptoBirdz is ERC721Connector {
 
   // ERC721 -> tokenId 민트
   // KryptoBirdz -> 사진 민트
-  function mint(string memory _kryptoBird) public {
+  function mint(address to, string memory _kryptoBird) public {
 
     require(!_kryptoBirdzExists[_kryptoBird], 'Error - kryptoBird already exists');
     // this is deprecated - uint _id = kryptoBirdz.push(_kryptoBird);
@@ -20,7 +20,7 @@ contract KryptoBirdz is ERC721Connector {
     uint _id = kryptoBirdz.length - 1;
 
     // .push no longer returns the length but a ref to the added element
-    _mint(msg.sender, _id);
+    _mint(to, _id);
 
     _kryptoBirdzExists[_kryptoBird] = true;
   }
